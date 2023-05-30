@@ -1,5 +1,3 @@
-import {renderResponse} from './gallery';
-
 const BASE_URL = 'https://pixabay.com/api/';
 const KEY = '29692752-5f9a27c26e6deec7970509d3f';
 const searchParams = new URLSearchParams({
@@ -13,11 +11,17 @@ const errorMessage = "Sorry, there are no images matching your search query. Ple
 function userFatch(userRequest){ 
   return fetch (`${BASE_URL}?key=${KEY}&q=${userRequest}&${searchParams}`)
 .then(r => r.json())
-.then(data => renderResponse(data))
+.then(data => userResponse(data))
 .catch(error => {
      console.log(error); 
      console.log(errorMessage);
 });
 };
 
+function userResponse(data) {
+  // const {webformatURL, largeImageURL, tags, likes, views, comments, downloads} = data;
+  data.hits.map(hit => hit);
+};
+
 export {userFatch};
+export {userResponse};

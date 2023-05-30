@@ -1,16 +1,23 @@
-import {userFatch} from './fetch';
-import renderCard from './photo-card';
+import {userResponse} from './fetch';
+console.log("userResponse:", userResponse)
+import renderCard from '../templats/photo-card';
 
 const refs = {
-     gallery: document.querySelector('.gallery'),
+     photoCard: document.querySelector('.photo-card'),
 };
 
 function renderResponse(data) {
-     const markup =  data.hits.map(hit => {
-     const {webformatURL, largeImageURL, tags, likes, views, comments, downloads} = hit;      
-     //  console.log(webformatURL, largeImageURL, tags, likes, views, comments, downloads);   
-
-    })
+     console.log("renderResponse  data:", data)
+     const {webformatURL, largeImageURL, tags, likes, views, comments, downloads} = data;
+//      console.log(data.hits.map(hit => hit)
+// )
+     
+     const markup =  renderCard
+      ({webformatURL, largeImageURL, tags, likes, views, comments, downloads});      
+     refs.photoCard.innerHTML = markup;
+     console.log(markup);  
   };
 
-export {renderResponse};
+  renderResponse();
+
+// export {renderResponse};

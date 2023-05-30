@@ -1,14 +1,13 @@
 // import './sass/index.scss';
 import {userFatch} from './js/fetch';
-import {gallery} from './js/gallery';
 
 const refs = {
      form: document.querySelector('#search-form'),
-     gallery: document.querySelector('.gallery'),
+     photoCard: document.querySelector('.photo-card'),
 };
 
 refs.form.addEventListener('submit', onSubmit);
-// refs.gallery.hidden = true;
+// refs.photoCard.hidden = true;
 
 function onSubmit(e) {
      e.preventDefault();
@@ -18,6 +17,6 @@ function onSubmit(e) {
      console.log("onSubmit  userRequest:", userRequest)
  
      refs.form.reset();
-     refs.gallery.hidden = false;
+     refs.photoCard.hidden = false;
      return userFatch(userRequest);  
 };
