@@ -1,3 +1,4 @@
+import {renderResponse} from './gallery';
 const BASE_URL = 'https://pixabay.com/api/';
 const KEY = '29692752-5f9a27c26e6deec7970509d3f';
 const searchParams = new URLSearchParams({
@@ -12,6 +13,7 @@ function userFatch(userRequest){
   return fetch (`${BASE_URL}?key=${KEY}&q=${userRequest}&${searchParams}`)
 .then(r => r.json())
 .then(data => userResponse(data))
+.then(renderResponse)
 .catch(error => {
      console.log(error); 
      console.log(errorMessage);
@@ -19,9 +21,12 @@ function userFatch(userRequest){
 };
 
 function userResponse(data) {
-  // const {webformatURL, largeImageURL, tags, likes, views, comments, downloads} = data;
-  data.hits.map(hit => hit);
+//  const dataForRender = {webformatURL, largeImageURL, tags, likes, views, comments, downloads}; 
+ const responseData = data.hits.map(hit => hit);
+ console.log("userResponse  responseData:", responseData)
+ return responseData;
 };
 
 export {userFatch};
 export {userResponse};
+

@@ -1,19 +1,15 @@
-  {{#each}}
+  {{#each.}}
   <a href="{{largeImageURL}}">
           <img src="{{webformatURL}}" alt="{{tags}}" loading="lazy" /> 
      <div class="info">
             <p class="info-item">
-              <b>{{Likes}}</b>
-            </p>
+              Likes: {{likes}}</p>
             <p class="info-item">
-              <b>{{Views}}</b>
-            </p>
+              Views: {{views}}</p>
             <p class="info-item">
-              <b>{{Comments}}</b>
-            </p>
+              Comments: {{comments}}</p>
             <p class="info-item">
-              <b>{{Downloads}}</b>
-            </p>
+              Downloads: {{downloads}}</p>
      </div>
   </a>
 {{/each}}

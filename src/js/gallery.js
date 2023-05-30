@@ -1,23 +1,15 @@
 import {userResponse} from './fetch';
-console.log("userResponse:", userResponse)
-import renderCard from '../templats/photo-card';
+import renderCard from '../templats/photo-card.hbs';
 
 const refs = {
      photoCard: document.querySelector('.photo-card'),
 };
 
-function renderResponse(data) {
-     console.log("renderResponse  data:", data)
-     const {webformatURL, largeImageURL, tags, likes, views, comments, downloads} = data;
-//      console.log(data.hits.map(hit => hit)
-// )
-     
-     const markup =  renderCard
-      ({webformatURL, largeImageURL, tags, likes, views, comments, downloads});      
+function renderResponse(responseData) {
+     console.log("renderResponse:", responseData)
+     const markup = renderCard(responseData);      
      refs.photoCard.innerHTML = markup;
-     console.log(markup);  
+     console.log("renderResponse  markup:", markup)
   };
 
-  renderResponse();
-
-// export {renderResponse};
+export {renderResponse};

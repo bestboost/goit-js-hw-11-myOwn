@@ -7,15 +7,12 @@ const refs = {
 };
 
 refs.form.addEventListener('submit', onSubmit);
-// refs.photoCard.hidden = true;
+refs.photoCard.hidden = true;
 
 function onSubmit(e) {
      e.preventDefault();
 
-     const userRequest = e.currentTarget.searchQuery.value;
-     
-     console.log("onSubmit  userRequest:", userRequest)
- 
+     const userRequest = e.currentTarget.searchQuery.value; 
      refs.form.reset();
      refs.photoCard.hidden = false;
      return userFatch(userRequest);  
