@@ -1,19 +1,19 @@
-// import './sass/index.scss';
+import './sass/index.scss';
 import {userFatch} from './js/fetch';
 
 const refs = {
      form: document.querySelector('#search-form'),
-     photoCard: document.querySelector('.photo-card'),
+     gallery: document.querySelector('.gallery'),
 };
 
 refs.form.addEventListener('submit', onSubmit);
-refs.photoCard.hidden = true;
+refs.gallery.hidden = true;
 
 function onSubmit(e) {
      e.preventDefault();
 
      const userRequest = e.currentTarget.searchQuery.value; 
      refs.form.reset();
-     refs.photoCard.hidden = false;
+     refs.gallery.hidden = false;
      return userFatch(userRequest);  
 };

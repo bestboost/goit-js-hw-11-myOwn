@@ -1,2 +1,52 @@
 @import './common';
 // @import './example';
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.5;
+  color: #2a2a2a;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  
+}
+
+.gallery {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     background-color: burlywood;
+     padding: 20px;
+     margin: auto;
+}
+
+.photo-card {
+     display: block;
+     background-color: aquamarine;
+     margin: auto;
+     padding: 10px;
+}
+
+.info {
+     display: flex;
+     border: 2px solid red;
+}
+
+.info-item {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin: auto;
+     padding-left: 4px;
+     padding-right: 4px;
+}
