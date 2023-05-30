@@ -4,10 +4,12 @@ import {userFatch} from './js/fetch';
 const refs = {
      form: document.querySelector('#search-form'),
      gallery: document.querySelector('.gallery'),
+     loadMoreBtn: document.querySelector('.load-more'),
 };
 
 refs.form.addEventListener('submit', onSubmit);
 refs.gallery.hidden = true;
+refs.loadMoreBtn.hidden = true;
 
 function onSubmit(e) {
      e.preventDefault();
