@@ -21,10 +21,7 @@ function userFatch(userRequest){
 };
 
 function userResponse(data) {
-//  const dataForRender = {webformatURL, largeImageURL, tags, likes, views, comments, downloads}; 
- const responseData = data.hits.map(hit => hit);
- console.log("userResponse  responseData:", responseData)
- return responseData;
+ return data.hits.map(hit => hit);
 };
 
 export {userFatch};

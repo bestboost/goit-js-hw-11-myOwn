@@ -5,11 +5,9 @@ const refs = {
      photoCard: document.querySelector('.photo-card'),
 };
 
-function renderResponse(responseData) {
-     console.log("renderResponse:", responseData)
-     const markup = renderCard(responseData);      
+function renderResponse(data) {
+     const markup = renderCard(data);      
      refs.photoCard.innerHTML = markup;
-     console.log("renderResponse  markup:", markup)
-  };
+};
 
 export {renderResponse};
