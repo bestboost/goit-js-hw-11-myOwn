@@ -1,4 +1,3 @@
-import {userResponse} from './fetch';
 import renderCard from '../templats/photo-card.hbs';
 
 const refs = {

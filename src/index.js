@@ -1,5 +1,8 @@
 import './sass/index.scss';
 import {userFatch} from './js/fetch';
+import {renderResponse} from './js/gallery';
+
+const errorMessage = "Sorry, there are no images matching your search query. Please try again.";
 
 const refs = {
      form: document.querySelector('#search-form'),
@@ -19,3 +22,16 @@ function onSubmit(e) {
      refs.gallery.hidden = false;
      return userFatch(userRequest);  
 };
+
+userFatch(1)
+.then(data => userResponse(data))
+.then(renderResponse)
+.catch(error => {
+     console.log(error); 
+     console.log(errorMessage);
+});
+
+function userResponse(data) {
+ return data.hits.map(hit => hit);
+};
+
