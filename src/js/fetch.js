@@ -5,14 +5,12 @@ const searchParams = new URLSearchParams({
      _orientation: "horizontal",
      _safesearch: true,
    });
-// const url = `${BASE_URL}?key=${KEY}&q=${userRequest}&${searchParams}`;
 
 function userFatch(userRequest){ 
-return fetch (`${BASE_URL}?key=${KEY}&q=${userRequest}&${searchParams}&per_pafe=40)`)
-.then(response => {
-  return response.json()})
-};
+  const url = `${BASE_URL}?key=${KEY}&q=${userRequest}&${searchParams}&per_pafe=40`;
+ 
+  return fetch (url).then(response => response.json())};
 
-export {userFatch};
+export default {userFatch};
 
 

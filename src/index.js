@@ -1,5 +1,5 @@
 import './sass/index.scss';
-import {userFatch} from './js/fetch';
+import API from './js/fetch';
 import {renderResponse} from './js/gallery';
 
 const errorMessage = "Sorry, there are no images matching your search query. Please try again.";
@@ -19,7 +19,7 @@ function onSubmit(e) {
 
      const userRequest = e.currentTarget.searchQuery.value; 
   
-     userFatch(userRequest)
+     API.userFatch(userRequest)
      .then(data => {return data})
      .then(data => userResponse(data))
      .then(renderResponse)
@@ -33,7 +33,6 @@ function onSubmit(e) {
 };
 
 function userResponse(data) {
- console.log("userResponse  data:", data)
  return data.hits.map(hit => hit);
 };
 
