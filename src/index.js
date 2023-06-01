@@ -18,20 +18,24 @@ function onSubmit(e) {
      e.preventDefault();
 
      const userRequest = e.currentTarget.searchQuery.value; 
+  
+     userFatch(userRequest)
+     .then(data => {return data})
+     .then(data => userResponse(data))
+     .then(renderResponse)
+     .catch(error => {
+          console.log(error); 
+          console.log(errorMessage)   
+     });
+
      refs.form.reset();
      refs.gallery.hidden = false;
-     return userFatch(userRequest);  
 };
-
-userFatch(1)
-.then(data => userResponse(data))
-.then(renderResponse)
-.catch(error => {
-     console.log(error); 
-     console.log(errorMessage);
-});
 
 function userResponse(data) {
+ console.log("userResponse  data:", data)
  return data.hits.map(hit => hit);
 };
+
+
 

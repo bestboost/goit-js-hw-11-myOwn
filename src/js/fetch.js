@@ -9,8 +9,8 @@ const searchParams = new URLSearchParams({
 
 function userFatch(userRequest){ 
 return fetch (`${BASE_URL}?key=${KEY}&q=${userRequest}&${searchParams}&per_pafe=40)`)
-.then(response => {return response.json()})
-
+.then(response => {
+  return response.json()})
 };
 
 export {userFatch};
