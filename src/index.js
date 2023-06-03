@@ -32,6 +32,7 @@ function onSubmit(e) {
      });
      
      // refs.loadMoreBtn.disabled = false;
+     cleareGalleryContainer();
      refs.loadMoreBtn.classList.remove('hidden');
      photoApiService.resetPage();
      refs.form.reset();
@@ -54,5 +55,11 @@ function loadMorePhoto() {
 
 refs.loadMoreBtn.classList.remove('hidden');
 }
+
+function cleareGalleryContainer() {
+     refs.gallery.innerHTML = '';
+};
+
+refs.loadMoreBtn.classList.add('hidden');
 // refs.loadMoreBtn.disabled = true;
 

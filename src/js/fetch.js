@@ -13,7 +13,7 @@ export default class PhotoApiService {
   }
 
   userFatch(){ 
-  const url = `${BASE_URL}?key=${KEY}&q=${this.userRequest}&${searchParams}&per_page=5&page=${this.page}`;
+  const url = `${BASE_URL}?key=${KEY}&q=${this.userRequest}&${searchParams}&per_page=4&page=${this.page}`;
  
   return fetch (url)
   .then(response => response.json())

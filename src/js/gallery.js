@@ -6,7 +6,7 @@ const refs = {
 
 function renderResponse(data) {
      const markup = renderCard(data);      
-     refs.gallery.innerHTML = markup;
+     refs.gallery.insertAdjacentHTML('beforeend', markup);
 };
 
 export {renderResponse};
