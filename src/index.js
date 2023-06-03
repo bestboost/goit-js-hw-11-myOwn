@@ -1,25 +1,49 @@
 import './sass/index.scss';
-import API from './js/fetch';
+import PhotoApiService from './js/fetch';
 import {renderResponse} from './js/gallery';
 
 const errorMessage = "Sorry, there are no images matching your search query. Please try again.";
 
 const refs = {
      form: document.querySelector('#search-form'),
+     searchBtn: document.querySelector('.searchBtn'),
      gallery: document.querySelector('.gallery'),
      loadMoreBtn: document.querySelector('.load-more'),
 };
 
-refs.form.addEventListener('submit', onSubmit);
-refs.gallery.hidden = true;
-refs.loadMoreBtn.hidden = true;
+refs.loadMoreBtn.classList.add('hidden');
 
+refs.form.addEventListener('submit', onSubmit);
+refs.loadMoreBtn.addEventListener('click', loadMorePhoto);
+
+const photoApiService = new PhotoApiService;
 function onSubmit(e) {
      e.preventDefault();
-
-     const userRequest = e.currentTarget.searchQuery.value; 
+    
+     photoApiService.query = e.currentTarget.elements.searchQuery.value; 
   
-     API.userFatch(userRequest)
+     photoApiService.userFatch()
+     .then(data => {return data})
+     .then(data => userResponse(data))
+     .then(renderResponse)
+     .catch(error => {
+          console.log(error); 
+          console.log(errorMessage)   
+     });
+     
+     // refs.loadMoreBtn.disabled = false;
+     refs.loadMoreBtn.classList.remove('hidden');
+     photoApiService.resetPage();
+     refs.form.reset();
+};
+
+function userResponse(data) {
+ return data.hits.map(hit => hit);
+};
+
+
+function loadMorePhoto() {
+     photoApiService.userFatch()
      .then(data => {return data})
      .then(data => userResponse(data))
      .then(renderResponse)
@@ -28,13 +52,7 @@ function onSubmit(e) {
           console.log(errorMessage)   
      });
 
-     refs.form.reset();
-     refs.gallery.hidden = false;
-};
-
-function userResponse(data) {
- return data.hits.map(hit => hit);
-};
-
-
+refs.loadMoreBtn.classList.remove('hidden');
+}
+// refs.loadMoreBtn.disabled = true;
 

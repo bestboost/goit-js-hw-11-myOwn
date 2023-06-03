@@ -4,13 +4,40 @@ const searchParams = new URLSearchParams({
      _image_type: "photo",
      _orientation: "horizontal",
      _safesearch: true,
-   });
+   }); 
 
-function userFatch(userRequest){ 
-  const url = `${BASE_URL}?key=${KEY}&q=${userRequest}&${searchParams}&per_pafe=40`;
+export default class PhotoApiService {
+  constructor(){
+   this.userRequest = '';
+   this.page = 1;
+  }
+
+  userFatch(){ 
+  const url = `${BASE_URL}?key=${KEY}&q=${this.userRequest}&${searchParams}&per_page=5&page=${this.page}`;
  
-  return fetch (url).then(response => response.json())};
+  return fetch (url)
+  .then(response => response.json())
+  .then(data => {this.loadMorePage()
+  return data})
+};
 
-export default {userFatch};
+
+loadMorePage(){
+  this.page += 1;
+};
+
+resetPage(){
+  this.page = 1;
+};
+
+get query() {
+  return this.userRequest;
+};
+
+set query(newQuery) {
+   this.userRequest = newQuery;
+};
+};
+
 
 
