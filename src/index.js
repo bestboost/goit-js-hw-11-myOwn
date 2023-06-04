@@ -38,7 +38,6 @@ function loadMorePhoto() {
 
 function fetchAction() {
      photoApiService.userFatch()
-     .then(data => {return data})
      .then(data => userResponse(data))
      .then(renderResponse)
      .catch(error => {
