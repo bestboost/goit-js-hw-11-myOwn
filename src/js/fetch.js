@@ -14,14 +14,14 @@ export default class PhotoApiService {
    this.per_page = 5;
   }
 
-userFatch(){ 
+async userFatch(){ 
   const url = `${BASE_URL}?key=${KEY}&q=${this.userRequest}&${searchParams}&per_page=${this.per_page}&page=${this.page}`;
  
-  return fetch (url)
-  .then(response => response.json())
-  .then(data => {this.checkNumberOfPhoto(data)
-    this.loadMorePage(data)
-  return data})
+  const response = await fetch (url)
+  const data = await response.json()
+    this.checkNumberOfPhoto(data)
+    this.loadMorePage()
+  return data
 };
 
 loadMorePage(){
@@ -29,6 +29,7 @@ loadMorePage(){
 };
 
 checkNumberOfPhoto(data){
+  console.log("PhotoApiService  checkNumberOfPhoto  data:", data)
   if(this.page > data.totalHits / this.per_page) {
     alert(finishMessage);
   
