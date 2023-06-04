@@ -5,25 +5,34 @@ const searchParams = new URLSearchParams({
      _orientation: "horizontal",
      _safesearch: true,
    }); 
+const finishMessage = "We're sorry, but you've reached the end of search results.";
 
 export default class PhotoApiService {
   constructor(){
    this.userRequest = '';
    this.page = 1;
+   this.per_page = 5;
   }
 
-  userFatch(){ 
-  const url = `${BASE_URL}?key=${KEY}&q=${this.userRequest}&${searchParams}&per_page=4&page=${this.page}`;
+userFatch(){ 
+  const url = `${BASE_URL}?key=${KEY}&q=${this.userRequest}&${searchParams}&per_page=${this.per_page}&page=${this.page}`;
  
   return fetch (url)
   .then(response => response.json())
-  .then(data => {this.loadMorePage()
+  .then(data => {this.checkNumberOfPhoto(data)
+    this.loadMorePage(data)
   return data})
 };
 
-
 loadMorePage(){
-  this.page += 1;
+  this.page += 1;  
+};
+
+checkNumberOfPhoto(data){
+  if(this.page > data.totalHits / this.per_page) {
+    alert(finishMessage);
+  
+ }; 
 };
 
 resetPage(){

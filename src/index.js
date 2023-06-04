@@ -17,20 +17,13 @@ refs.form.addEventListener('submit', onSubmit);
 refs.loadMoreBtn.addEventListener('click', loadMorePhoto);
 
 const photoApiService = new PhotoApiService;
+
 function onSubmit(e) {
      e.preventDefault();
     
      photoApiService.query = e.currentTarget.elements.searchQuery.value; 
-  
-     photoApiService.userFatch()
-     .then(data => {return data})
-     .then(data => userResponse(data))
-     .then(renderResponse)
-     .catch(error => {
-          console.log(error); 
-          console.log(errorMessage)   
-     });
      
+     fetchAction();
      // refs.loadMoreBtn.disabled = false;
      cleareGalleryContainer();
      refs.loadMoreBtn.classList.remove('hidden');
@@ -38,12 +31,12 @@ function onSubmit(e) {
      refs.form.reset();
 };
 
-function userResponse(data) {
- return data.hits.map(hit => hit);
+function loadMorePhoto() {  
+     fetchAction();
+     refs.loadMoreBtn.classList.remove('hidden');
 };
 
-
-function loadMorePhoto() {
+function fetchAction() {
      photoApiService.userFatch()
      .then(data => {return data})
      .then(data => userResponse(data))
@@ -52,9 +45,11 @@ function loadMorePhoto() {
           console.log(error); 
           console.log(errorMessage)   
      });
+};
 
-refs.loadMoreBtn.classList.remove('hidden');
-}
+function userResponse(data) {
+     return data.hits.map(hit => hit);
+};
 
 function cleareGalleryContainer() {
      refs.gallery.innerHTML = '';
