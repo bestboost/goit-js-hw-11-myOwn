@@ -29,7 +29,6 @@ loadMorePage(){
 };
 
 checkNumberOfPhoto(data){
-  console.log("PhotoApiService  checkNumberOfPhoto  data:", data)
   if(this.page > data.totalHits / this.per_page) {
     alert(finishMessage);
   
